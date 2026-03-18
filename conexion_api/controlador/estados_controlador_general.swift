@@ -6,7 +6,8 @@
 //
 
 enum EstadosControladorGeneral{
-    case descargando_datos
-    case mostrarando_datos
+    case descargando_publicaciones
+    case en_espera
+    case descargando_publicacion
     case error_en_descarga
 }
