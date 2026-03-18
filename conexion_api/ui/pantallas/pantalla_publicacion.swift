@@ -14,10 +14,10 @@ struct PantallaPublicacion: View {
         if(controlador.publicacion == nil){
             
             switch(controlador.estado){
-                case .descargando_publicaciones:
-                    Text("Descargando los datos")
-        
-                case .en_espera:
+            case .descargando_publicaciones:
+                Text("Descargando los datos")
+                
+            case .en_espera:
                 Text("\(controlador.publicacion)")
                     .onAppear{
                         controlador.descargar_publicacion(id: id)
@@ -33,7 +33,19 @@ struct PantallaPublicacion: View {
             
         }
         else{
-            Text("")
+            Text("\(controlador.estado)")
+            
+            Text("Publicacion: \(controlador.publicacion?.title ?? "")")
+            
+            ScrollView(.horizontal){
+                HStack{
+                    ForEach(controlador
+                        .publicacion?.comentarios ?? [Comentario]()){comentario in
+                            Text("Comentario: \(comentario.body)")
+                            Text("Escrito por: \(comentario.name)")
+                        }
+                }
+            }
         }
     }
 }

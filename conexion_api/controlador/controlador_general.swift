@@ -29,7 +29,7 @@ class ControladorGeneral{
         Task{
             try await Task.sleep(for: .seconds(5))
             await _descargar_publicacion(id: String(id))
-            await _descargar_comentarios_publicacion(id: <#T##String#>)
+            await _descargar_comentarios_publicacion(id: String(id))
             
             estado = .en_espera
         }
