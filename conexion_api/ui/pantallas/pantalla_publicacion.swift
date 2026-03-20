@@ -33,19 +33,8 @@ struct PantallaPublicacion: View {
             
         }
         else{
-            Text("\(controlador.estado)")
+            VistaPublicacion(publicacion: controlador.publicacion!)
             
-            Text("Publicacion: \(controlador.publicacion?.title ?? "")")
-            
-            ScrollView(.horizontal){
-                HStack{
-                    ForEach(controlador
-                        .publicacion?.comentarios ?? [Comentario]()){comentario in
-                            Text("Comentario: \(comentario.body)")
-                            Text("Escrito por: \(comentario.name)")
-                        }
-                }
-            }
         }
     }
 }
