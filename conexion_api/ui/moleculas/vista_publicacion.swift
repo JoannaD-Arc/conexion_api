@@ -14,14 +14,26 @@ struct VistaPublicacion: View {
     var body: some View {
         
         Text("Publicacion: \(publicacion.title)")
-        
+        VStack{
+            if let usuario = publicacion.usuario{
+                MiniVistaUsuario(usuario: usuario)
+            }
+            else{
+                Text("Error")
+            }
+           
+        }
         ScrollView(.horizontal){
             VStack(alignment: .leading){
                 ForEach(publicacion.comentarios ?? [Comentario]()){comentario in
-                        Text("\(comentario.name)")
-                        Text("\(comentario.body)")
+                        VistaComentario(comentario: comentario)
                     }
             }
         }
     }
+}
+
+#Preview {
+    PantallaPublicacion(id: 3)
+        .environment(ControladorGeneral())
 }

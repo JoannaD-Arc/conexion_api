@@ -11,9 +11,8 @@ struct Inicio: View {
     @Environment(ControladorGeneral.self) var controlador
     
     var body: some View {
+        
         ZStack{
-                
-                
             VStack{
                 Text("Blahajgram")
                     .font(.largeTitle)
@@ -34,10 +33,10 @@ struct Inicio: View {
                                     PantallaPublicacion(id: publicacion.id)
                                 } label: {
                                     Text(publicacion.title)
-                                }.simultaneousGesture(TapGesture().onEnded{
+                                }/*.simultaneousGesture(TapGesture().onEnded{
                                     controlador.descargar_publicacion(id: publicacion.id)
                                 }
-                                )
+                                )*/
                             }
                         }
                     case .descargando_publicacion:
@@ -47,7 +46,9 @@ struct Inicio: View {
                         Text("ERROR: Asegurate de tener wifi!!!")
                     }
                 }
-                
+                .onAppear{
+                    controlador.descargar_publicaciones()
+                }
             }
         }
     }

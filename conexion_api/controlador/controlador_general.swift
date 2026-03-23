@@ -17,12 +17,16 @@ class ControladorGeneral{
     public var publicacion: Publicacion? = nil
     
     init(){
-        estado = .descargando_publicaciones
+        estado = .en_espera
         
-        descargar_publicaciones()
+        //descargar_publicaciones() /// Esto ya es viejo, bórralo en el futuro.
     }
     
     func descargar_publicacion(id: Int){
+        if(estado != .en_espera){
+            return
+        }
+        
         self.publicacion = nil
         estado = .descargando_publicacion
         
@@ -30,7 +34,20 @@ class ControladorGeneral{
             try await Task.sleep(for: .seconds(5))
             await _descargar_publicacion(id: String(id))
             await _descargar_comentarios_publicacion(id: String(id))
-            
+            await _descargar_usuario(id: self.publicacion?.userId ?? -1)
+            estado = .en_espera
+        }
+    }
+    
+    func descargar_usuario(id: Int){
+        if(estado != .en_espera){
+            return
+        }
+        estado = .descargando_publicacion
+        
+        Task{
+            try await Task.sleep(for: .seconds(5))
+            await _descargar_usuario(id: id)
             estado = .en_espera
         }
     }
@@ -62,10 +79,27 @@ class ControladorGeneral{
             estado = .error_en_descarga
         }
     }
+    
+    private func _descargar_usuario(id: Int) async {
+        let url = "\(url_base)/users/\(id)"
+        
+        let usuario: Usuario? = await ServicioAPI.descargar_informacion(desde: url)
+        
+        if let usuario = usuario{
+            self.publicacion?.usuario = usuario
+        }
+        else{
+            estado = .error_en_descarga
+        }
+    }
+    
     func descargar_publicaciones(){
+        estado = .descargando_publicaciones
         Task{
             try await Task.sleep(for: .seconds(5))
             await _descargar_publicaciones()
+            
+            estado = .en_espera
         }
     }
     
