@@ -26,6 +26,12 @@ struct MenuBase: View {
                 Text("Debería ser una pantalla de configuración")
             }
             .badge("!")
+            
+            Tab("Configuración", systemImage: "gearshape"){
+            Text("También una configuración")
+        }
+        
+
         }
     }
 }

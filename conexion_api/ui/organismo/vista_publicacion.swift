@@ -16,7 +16,11 @@ struct VistaPublicacion: View {
         Text("Publicacion: \(publicacion.title)")
         VStack{
             if let usuario = publicacion.usuario{
-                MiniVistaUsuario(usuario: usuario)
+                NavigationLink{
+                    PantallaUsuario(id: usuario.id)
+                }label: {
+                    MiniVistaUsuario(usuario: usuario)
+                }
             }
             else{
                 Text("Error")
@@ -34,6 +38,8 @@ struct VistaPublicacion: View {
 }
 
 #Preview {
-    PantallaPublicacion(id: 3)
-        .environment(ControladorGeneral())
+    NavigationStack{
+        PantallaPublicacion(id: 3)
+            .environment(ControladorGeneral())
+    }
 }
