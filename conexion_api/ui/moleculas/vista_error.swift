@@ -1,13 +1,13 @@
 //
-//  vista_descargando_datos.swift
+//  vista_error.swift
 //  conexion_api
 //
-//  Created by alumno on 3/20/26.
+//  Created by alumno on 3/25/26.
 //
 
 import SwiftUI
 
-struct VistaDescargandoDatos: View {
+struct VistaErrorDescarga: View {
     
     var body: some View {
         
@@ -16,16 +16,15 @@ struct VistaDescargandoDatos: View {
                 .ignoresSafeArea()
                 .foregroundStyle(Color.nulnOil)
             VStack {
-                Image(systemName: "moonphase.waxing.gibbous")
+                Image(systemName: "exclamationmark.triangle.fill")
                     .font(.largeTitle)
                     .foregroundStyle(Color.burntCrimson)
                     .symbolEffect(.breathe)
                 
-                Text("Cargando...")
+                Text("Ocurrió un error inesperado.")
                     .fontDesign(.serif)
                     .font(.headline)
                     .foregroundStyle(Color.burntCrimson)
-                    .symbolEffect(.breathe)
                     .padding(2)
             }
         }
@@ -33,5 +32,6 @@ struct VistaDescargandoDatos: View {
     }
 }
 #Preview {
-    VistaDescargandoDatos()
+    VistaErrorDescarga()
 }
+

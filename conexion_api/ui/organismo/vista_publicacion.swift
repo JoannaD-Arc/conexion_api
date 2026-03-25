@@ -13,17 +13,27 @@ struct VistaPublicacion: View {
     
     var body: some View {
         
-        Text("Publicacion: \(publicacion.title)")
+        Text("\(publicacion.title)")
+            .font(.title)
+            .bold()
+            .fontDesign(.serif)
+            .foregroundStyle(Color.babyBarnOwl)
+        
+        
         VStack{
             if let usuario = publicacion.usuario{
                 NavigationLink{
                     PantallaUsuario(id: usuario.id)
                 }label: {
                     MiniVistaUsuario(usuario: usuario)
+                        .font(.subheadline)
+                        .padding(2)
+                        .fontDesign(.serif)
+                        .foregroundStyle(Color.babyBarnOwl)
                 }
             }
             else{
-                Text("Error")
+                VistaErrorDescarga()
             }
            
         }

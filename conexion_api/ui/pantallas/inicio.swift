@@ -13,17 +13,21 @@ struct Inicio: View {
     var body: some View {
         
         ZStack{
+            Rectangle()
+                .ignoresSafeArea()
+                .foregroundStyle(.nulnOil)
+            
             VStack{
-                Text("Blahajgram")
+                Text("Pentagram")
+                    .foregroundStyle(Color.burntCrimson)
+                    .fontDesign(.serif)
+                    .bold()
                     .font(.largeTitle)
                 
                 NavigationStack{
                     switch(controlador.estado){
                     case .descargando_publicaciones:
-                        
-                        Image(systemName: "heart.circle.fill")
-                        
-                        Text("Espera un momento...")
+                            VistaDescargandoDatos()
                         
                     case .en_espera:
                         
@@ -34,16 +38,14 @@ struct Inicio: View {
                                 } label: {
                                     Text(publicacion.title)
                                 }/*.simultaneousGesture(TapGesture().onEnded{
-                                    controlador.descargar_publicacion(id: publicacion.id)
-                                }
-                                )*/
+                                    controlador.descargar_publicacion(id: publicacion.id)})*/
                             }
                         }
                     case .descargando_publicacion:
                         Text("")
                         
                     case .error_en_descarga:
-                        Text("ERROR: Asegurate de tener wifi!!!")
+                        VistaErrorDescarga()
                     }
                 }
                 .onAppear{

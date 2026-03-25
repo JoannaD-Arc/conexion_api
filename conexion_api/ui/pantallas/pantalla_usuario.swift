@@ -17,9 +17,7 @@ struct PantallaUsuario: View {
             switch(gestor_usuario.estado)
             {
                 case .descargando:
-                Image(systemName: "arrow.down.app.fill")
-                    .font(.largeTitle)
-                    .symbolEffect(.breathe)
+                    VistaDescargandoDatos()
                 
                 case .error_en_la_descarga:
                 Text("Hubo un problema con la descarga")
