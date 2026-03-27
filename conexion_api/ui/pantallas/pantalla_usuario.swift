@@ -20,12 +20,12 @@ struct PantallaUsuario: View {
                     VistaDescargandoDatos()
                 
                 case .error_en_la_descarga:
-                Text("Hubo un problema con la descarga")
+                    VistaErrorDescarga()
                 
                 case .esperando:
                     if let usuario = gestor_usuario.usuario
                     {
-                        Text("Usuario: \(usuario.nombre)")
+                        Text("Usuario: \(usuario.nombre)") //Pantalla Usuario
                     }
                 
             }

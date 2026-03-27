@@ -37,13 +37,17 @@ struct VistaPublicacion: View {
             }
            
         }
-        ScrollView(.horizontal){
+        ScrollView(.vertical){
             VStack(alignment: .leading){
                 ForEach(publicacion.comentarios ?? [Comentario]()){comentario in
                         VistaComentario(comentario: comentario)
                     }
             }
+            
         }
+        TextField("Escribe un comentario...", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+            .background(Color.babyBarnOwl)
+            .foregroundStyle(Color.nulnOil)
     }
 }
 

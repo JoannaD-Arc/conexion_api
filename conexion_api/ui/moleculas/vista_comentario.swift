@@ -11,25 +11,38 @@ struct VistaComentario: View {
     var comentario: Comentario
     
     var body: some View {
-        
-        ZStack{
-            RoundedRectangle(cornerRadius: 100)
-                .foregroundStyle(Color.burntCrimson)
-            
-                Text("\(comentario.name)")
-                    .font(.subheadline)
-                    .foregroundStyle(Color.babyBarnOwl)
-                Text("\(comentario.body)")
+        VStack{
+            ZStack{
+                RoundedRectangle(cornerRadius: 25)
+                    .foregroundStyle(Color.burntCrimson)
+                
+                HStack{
+                    VStack(alignment: .leading){
+                        Circle()
+                            .frame(width:50)
+                        
+                        Spacer()
+                    }
+                    VStack(alignment: .leading){
+                        Text("\(comentario.name)")
+                            .font(.subheadline)
+                            .foregroundStyle(Color.babyBarnOwl)
+                        Text("\(comentario.body)")
+                        
+                    }
+                }
+                .padding(20)
+                
             }
-        .frame(height: 50)
-        .padding()
-    }
+            .scaledToFit()
+            
+        }
         
-}
-
-#Preview {
-    NavigationStack{
-        PantallaPublicacion(id: 3)
-            .environment(ControladorGeneral())
     }
 }
+#Preview {
+        NavigationStack{
+            PantallaPublicacion(id: 3)
+                .environment(ControladorGeneral())
+        }
+    }
