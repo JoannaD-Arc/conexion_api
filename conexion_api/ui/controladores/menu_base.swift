@@ -18,14 +18,13 @@ struct MenuBase: View {
             .badge(controlador.publicaciones.count)
             
             Tab("Perfil", systemImage: "person.crop.circle"){
-                Text("Debería ser una pantalla de perfil.")
+                PantallaUsuario(id:1)
             }
             .badge(2)
             
-            Tab("Configuración", systemImage: "gearshape"){
-                
+            Tab("Crear Publicación", systemImage: "plus.app.fill"){
+                PantallaCrearPublicacion(id:1)
             }
-            .badge("!")
             
             Tab("Configuración", systemImage: "gearshape"){
                 PantallaConfiguracion()

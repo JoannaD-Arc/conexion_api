@@ -23,10 +23,9 @@ struct PantallaUsuario: View {
                     VistaErrorDescarga()
                 
                 case .esperando:
-                    if let usuario = gestor_usuario.usuario
-                    {
-                        Text("Usuario: \(usuario.nombre)") //Pantalla Usuario
-                    }
+                if let usuario = gestor_usuario.usuario {
+                    VistaPerfilUsuario(usuario: usuario)
+                }
                 
             }
             

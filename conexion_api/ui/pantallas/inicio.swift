@@ -18,7 +18,7 @@ struct Inicio: View {
                 .foregroundStyle(.nulnOil)
             
             VStack{
-                Text("Pentagram")
+                Text("Penstagram")
                     .foregroundStyle(Color.burntCrimson)
                     .fontDesign(.serif)
                     .bold()
@@ -32,15 +32,25 @@ struct Inicio: View {
                     case .en_espera:
                         
                         ScrollView{
-                            ForEach(controlador.publicaciones){ publicacion in
-                                NavigationLink{
-                                    PantallaPublicacion(id: publicacion.id)
-                                } label: {
-                                    Text(publicacion.title)
-                                }/*.simultaneousGesture(TapGesture().onEnded{
-                                    controlador.descargar_publicacion(id: publicacion.id)})*/
+                            LazyVStack(spacing: 16){
+                                
+                                ForEach(controlador.publicaciones){ publicacion in
+                                    
+                                    NavigationLink{
+                                        PantallaPublicacion(id: publicacion.id)
+                                    } label: {
+                                        
+                                        VistaPublicacionCard(publicacion: publicacion)
+                                        
+                                    }
+                                    
+                                }
+                                
                             }
+                            .padding()
                         }
+                        .background(Color.nulnOil)
+                        
                     case .descargando_publicacion:
                         Text("")
                         
