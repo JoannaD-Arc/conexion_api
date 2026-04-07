@@ -18,7 +18,10 @@ struct VistaComentario: View {
                 
                 HStack{
                     VStack(alignment: .leading){
-                        Circle()
+                        Image("Eda_Clawthorne")
+                            .resizable()
+                            .scaledToFit()
+                            .clipShape(Circle())
                             .frame(width:50)
                         
                         Spacer()
@@ -26,6 +29,7 @@ struct VistaComentario: View {
                     VStack(alignment: .leading){
                         Text("\(comentario.name)")
                             .font(.subheadline)
+                            .bold()
                             .foregroundStyle(Color.babyBarnOwl)
                         Text("\(comentario.body)")
                         

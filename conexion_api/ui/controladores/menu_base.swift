@@ -23,12 +23,12 @@ struct MenuBase: View {
             .badge(2)
             
             Tab("Configuración", systemImage: "gearshape"){
-                Text("Debería ser una pantalla de configuración")
+                
             }
             .badge("!")
             
             Tab("Configuración", systemImage: "gearshape"){
-            Text("También una configuración")
+                PantallaConfiguracion()
         }
         
 
